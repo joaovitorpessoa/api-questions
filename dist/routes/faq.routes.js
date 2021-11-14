@@ -1,0 +1,18 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.faqRoutes = void 0;
+var express_1 = require("express");
+var listQuestions_1 = require("../modules/faq/useCases/listQuestions");
+var createQuestion_1 = require("../modules/faq/useCases/createQuestion");
+var updateQuestion_1 = require("../modules/faq/useCases/updateQuestion");
+var deleteQuestion_1 = require("../modules/faq/useCases/deleteQuestion");
+var faqRoutes = (0, express_1.Router)();
+exports.faqRoutes = faqRoutes;
+var listQuestionsController = new listQuestions_1.ListQuestionsController();
+var createQuestionController = new createQuestion_1.CreateQuestionController();
+var updateQuestionController = new updateQuestion_1.UpdateQuestionController();
+var deleteQuestionController = new deleteQuestion_1.DeleteQuestionController();
+faqRoutes.get("/", listQuestionsController.handle);
+faqRoutes.post("/", createQuestionController.handle);
+faqRoutes.put("/", updateQuestionController.handle);
+faqRoutes.delete("/", deleteQuestionController.handle);
